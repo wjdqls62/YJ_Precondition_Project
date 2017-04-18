@@ -14,4 +14,26 @@
         android:key="devinfo_title_phonenumber"
         android:title="@string/text_phone_number"
         android:summary="" />
+
+    <Preference
+        android:key="devinfo_title_board"
+        android:title="@string/text_board"
+        android:summary="" />
+
+    <Preference
+        android:key="devinfo_title_swversion"
+        android:title="@string/text_swversion"
+        android:summary="" />
+
+    <Preference
+        android:key="devinfo_title_android_version"
+        android:title="@string/text_androidversion"
+        android:summary="" />
+
+    <Preference
+        android:key="devinfo_title_manufacturer"
+        android:title="@string/text_manufacturer"
+        android:summary="" />
+
+
 </PreferenceScreen>

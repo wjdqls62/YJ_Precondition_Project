@@ -84,20 +84,18 @@
     <string name="btn_delete">Delete</string>
     <string name="text_not_exist_dummy">Dummy file does not exist</string>
 
-
     <!-- Information_Fragment -->
     <string name="text_model">Medel name</string>
     <string name="text_imei">IMEI</string>
     <string name="text_phone_number">SIM number</string>
-    <string name="text_operator">Operator</string>
-    <string name="text_app_ver">Version : 0.5</string>
-    <string name="text_corp">Yujeong System</string>
+    <string name="text_board">Chipset</string>
+    <string name="text_swversion">SW Version</string>
+    <string name="text_androidversion">Android Version</string>
+    <string name="text_manufacturer">Manufacturer</string>
 
     <!-- StorageState View -->
     <string name="text_storage_type">Internal Storage</string>
     <string name="text_storage_usage">Null</string>
-    <string name="text_storage_used_of_mid"> used of </string>
-    <string name="text_storage_used_of_end"></string>
 
 
     <string name="action_settings">Settings</string>
