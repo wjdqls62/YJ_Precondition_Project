@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <SwitchPreference
+        android:id="@+id/sw1"
+        android:title="@string/switch_1_lgbackup"
+        android:defaultValue="true"
+        android:key="lgbackup"
+        android:summary="Precondition 시나리오 진입 전 LG백업을 가장 먼저 복원합니다." />
+    <SwitchPreference
+        android:id="@+id/sw2"
+        android:title="@string/switch_2_emergency"
+        android:defaultValue="true"
+        android:key="emergency"/>
+    <SwitchPreference
+        android:id="@+id/sw3"
+        android:title="@string/switch_3_ckerror"
+        android:defaultValue="true"
+        android:key="ckerror"/>
+    <SwitchPreference
+        android:id="@+id/sw4"
+        android:title="@string/switch_4_screentimeout"
+        android:defaultValue="true"
+        android:key="screentimeout" />
+    <SwitchPreference
+        android:id="@+id/sw5"
+        android:title="@string/switch_5_apppermission"
+        android:defaultValue="true"
+        android:key="apppermission" />
+    <SwitchPreference
+        android:id="@+id/sw6"
+        android:title="@string/switch_6_autofill"
+        android:defaultValue="true"
+        android:key="autofill" />
+    <SwitchPreference
+        android:id="@+id/sw7"
+        android:title="@string/switch_7_phone"
+        android:defaultValue="true"
+        android:key="phone" />
+    <SwitchPreference
+        android:id="@+id/sw8"
+        android:title="@string/switch_8_swipe"
+        android:defaultValue="true"
+        android:key="swipe" />
+    <SwitchPreference
+        android:id="@+id/sw9"
+        android:title="@string/switch_9_bluetooth"
+        android:defaultValue="true"
+        android:key="bluetooth" />
+    <SwitchPreference
+        android:id="@+id/sw10"
+        android:title="@string/switch_10_location"
+        android:defaultValue="true"
+        android:key="location" />
+    <SwitchPreference
+        android:id="@+id/sw11"
+        android:title="@string/switch_11_batteryguage"
+        android:defaultValue="true"
+        android:key="batteryguage" />
+    <SwitchPreference
+        android:id="@+id/sw12"
+        android:title="@string/switch_12_account"
+        android:defaultValue="true"
+        android:key="account" />
+    <SwitchPreference
+        android:id="@+id/sw13"
+        android:title="@string/switch_13_swupdate"
+        android:defaultValue="true"
+        android:key="swupdate" />
+    <SwitchPreference
+        android:id="@+id/sw14"
+        android:title="@string/switch_14_penmode"
+        android:defaultValue="true"
+        android:key="penmode" />
+    <SwitchPreference
+        android:id="@+id/sw15"
+        android:title="@string/switch_15_devoption"
+        android:defaultValue="true"
+        android:key="devoption"/>
+    <SwitchPreference
+        android:id="@+id/sw16"
+        android:title="@string/switch_16_sdcard"
+        android:defaultValue="true"
+        android:key="sdcard" />
+    <SwitchPreference
+        android:id="@+id/sw17"
+        android:title="@string/switch_17_dualwindow"
+        android:defaultValue="true"
+        android:key="dualwindow" />
+    <SwitchPreference
+        android:id="@+id/sw18"
+        android:title="@string/switch_18_mobiledata"
+        android:defaultValue="true"
+        android:key="mobiledata" />
+    <SwitchPreference
+        android:id="@+id/sw19"
+        android:title="@string/switch_19_wifi"
+        android:defaultValue="true"
+        android:key="wifi" />
+    <SwitchPreference
+        android:id="@+id/sw20"
+        android:title="@string/switch_20_video"
+        android:defaultValue="true"
+        android:key="video" />
+    <SwitchPreference
+        android:id="@+id/sw21"
+        android:title="@string/switch_21_camera"
+        android:defaultValue="true"
+        android:key="camera" />
+    <SwitchPreference
+        android:id="@+id/sw22"
+        android:title="@string/switch_22_gallery_crop"
+        android:defaultValue="true"
+        android:key="gallery_crop" />
+    <SwitchPreference
+        android:id="@+id/sw23"
+        android:title="@string/switch_23_gallery_video"
+        android:defaultValue="true"
+        android:key="gallery_video" />
+    <SwitchPreference
+        android:id="@+id/sw24"
+        android:title="@string/switch_24_gallery_delete"
+        android:defaultValue="true"
+        android:key="gallery_delete" />
+    <SwitchPreference
+        android:id="@+id/sw25"
+        android:title="@string/switch_25_contact"
+        android:defaultValue="true"
+        android:key="contact" />
+    <SwitchPreference
+        android:id="@+id/sw26"
+        android:title="@string/switch_26_message"
+        android:defaultValue="true"
+        android:key="message" />
+    <SwitchPreference
+        android:id="@+id/sw27"
+        android:title="@string/switch_27_qmemo"
+        android:defaultValue="true"
+        android:key="qmemo" />
+    <SwitchPreference
+        android:id="@+id/sw28"
+        android:title="@string/switch_28_calender"
+        android:defaultValue="true"
+        android:key="calender" />
+    <SwitchPreference
+        android:id="@+id/sw29"
+        android:title="@string/switch_29_playstore"
+        android:defaultValue="true"
+        android:key="playstore" />
+    <SwitchPreference
+        android:id="@+id/sw30"
+        android:title="@string/switch_30_youtube"
+        android:defaultValue="true"
+        android:key="youtube" />
+    <SwitchPreference
+        android:id="@+id/sw31"
+        android:title="@string/switch_31_chrome"
+        android:defaultValue="true"
+        android:key="chrome" />
+    <SwitchPreference
+        android:id="@+id/sw32"
+        android:title="@string/switch_32_naver"
+        android:defaultValue="true"
+        android:key="naver" />
+    <SwitchPreference
+        android:id="@+id/sw33"
+        android:title="@string/switch_33_recoder"
+        android:defaultValue="true"
+        android:key="recorder" />
+    <SwitchPreference
+        android:id="@+id/sw34"
+        android:title="@string/switch_34_dmb"
+        android:defaultValue="true"
+        android:key="dmb" />
+    <SwitchPreference
+        android:id="@+id/sw35"
+        android:title="@string/switch_35_music"
+        android:defaultValue="true"
+        android:key="music" />
+    <SwitchPreference
+        android:id="@+id/sw35"
+        android:title="@string/switch_36_email"
+        android:defaultValue="true"
+        android:key="email" />
+    <SwitchPreference
+        android:id="@+id/sw36"
+        android:title="@string/switch_37_gmail"
+        android:defaultValue="true"
+        android:key="gmail" />
+    <SwitchPreference
+        android:id="@+id/sw37"
+        android:title="@string/switch_38_filemanager"
+        android:defaultValue="true"
+        android:key="filemanager" />
+    <SwitchPreference
+        android:id="@+id/sw38"
+        android:title="@string/switch_39_art"
+        android:defaultValue="true"
+        android:key="art" />
+    <SwitchPreference
+        android:id="@+id/sw39"
+        android:title="@string/switch_40_hidden"
+        android:defaultValue="true"
+        android:key="hidden" />
+    <SwitchPreference
+        android:id="@+id/sw40"
+        android:title="@string/switch_41_operation"
+        android:defaultValue="true"
+        android:key="operation" />
+    <SwitchPreference
+        android:id="@+id/sw41"
+        android:title="@string/switch_42_qwerty"
+        android:defaultValue="true"
+        android:key="qwerty" />
+</PreferenceScreen>

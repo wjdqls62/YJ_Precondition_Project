@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item android:id="@+id/navi_script" android:icon="@drawable/icon_navi_art_script"
+            android:title="@string/navi_script" />
+        <item android:id="@+id/navi_permision" android:icon="@drawable/icon_navi_permission"
+            android:title="@string/navi_permision" />
+        <item android:id="@+id/navi_autofill" android:icon="@drawable/icon_navi_auto_fill"
+            android:title="@string/navi_autofill" />
+        <item android:id="@+id/navi_trash" android:icon="@drawable/icon_navi_garbage"
+            android:title="@string/navi_trash" />
+        <item android:id="@+id/navi_devinfo" android:icon="@drawable/icon_navi_dev_info"
+        android:title="@string/navi_devinfo" />
+        <item android:id="@+id/navi_appsettings" android:icon="@drawable/icon_navi_settings"
+            android:title="@string/navi_appsettings" />
+    </group>
+
+</menu>

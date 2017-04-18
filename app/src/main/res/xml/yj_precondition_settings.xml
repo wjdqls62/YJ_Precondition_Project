@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    android:key="settings">
+
+    <PreferenceCategory
+        android:title="Category1" >
+
+    <Preference
+        android:id="@+id/dummypath"
+        android:title="더미파일 생성 경로"
+        android:key="dummypath"
+        android:summary="/sdcard/YJ_Precondition/Dummy_files/"
+        android:defaultValue="/sdcard/YJ_Precondition/Dummy_files/" />
+
+    </PreferenceCategory>
+
+
+
+</PreferenceScreen>
+

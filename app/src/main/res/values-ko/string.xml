@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Main Activity -->
+    <string name="navi_permision">앱 권한</string>
+    <string name="navi_autofill">자동 채우기</string>
+    <string name="navi_trash">휴지통</string>
+    <string name="navi_script">ART SCRIPT</string>
+    <string name="navi_devinfo">기기 정보</string>
+    <string name="navi_appsettings">설정</string>
+
+    <!--  문자열 -->
+    <string name="switch_1_lgbackup">자동 LG백업 복원</string>
+    <string name="switch_2_emergency">긴급 알람 해제</string>
+    <string name="switch_3_ckerror">CK Error 설정</string>
+    <string name="switch_4_screentimeout">자동 화면 꺼짐 설정</string>
+    <string name="switch_5_apppermission">어플리케이션 권한 설정</string>
+    <string name="switch_6_autofill">자동 채우기(eMMC 50%)</string>
+    <string name="switch_7_phone">전화앱 및 후후 팝업 제거</string>
+    <string name="switch_8_swipe">잠금화면 Swipe 설정</string>
+    <string name="switch_9_bluetooth">블루투스 활성화</string>
+    <string name="switch_10_location">위치 정보</string>
+    <string name="switch_11_batteryguage">상태바에 배터리 % 표시</string>
+    <string name="switch_12_account">계정 동기화 비활성화</string>
+    <string name="switch_13_swupdate">SW 자동 업데이트 비활성화</string>
+    <string name="switch_14_penmode">펜모드 비활성화</string>
+    <string name="switch_15_devoption">개발자 옵션 설정</string>
+    <string name="switch_16_sdcard">SD카드 포맷</string>
+    <string name="switch_17_dualwindow">멀티 윈도우 활성화</string>
+    <string name="switch_18_mobiledata">부팅시 모바일 데이터 팝업 제거</string>
+    <string name="switch_19_wifi">Wi-Fi 팝업 제거</string>
+    <string name="switch_20_video">동영상 파일 즐겨찾기</string>
+    <string name="switch_21_camera">카메라 초기설정 및 팝업제거</string>
+    <string name="switch_22_gallery_crop">갤러리 사진 자르기 기본앱 설정</string>
+    <string name="switch_23_gallery_video">갤러리 비디오 기본앱 설정</string>
+    <string name="switch_24_gallery_delete">갤러리 Select group 팝업 제거</string>
+    <string name="switch_25_contact">주소록 사진촬영 기본앱 설정</string>
+    <string name="switch_26_message">메시지 알림 제거 및 팝업 제거</string>
+    <string name="switch_27_qmemo">Qmemo+ 팝업 제거</string>
+    <string name="switch_28_calender">캘린더</string>
+    <string name="switch_29_playstore">플레이 스토어 자동 업데이트 비활성화</string>
+    <string name="switch_30_youtube">유튜브 Got it 팝업 제거</string>
+    <string name="switch_31_chrome">크롬 설정</string>
+    <string name="switch_32_naver">네이버 위치동의 팝업 설정</string>
+    <string name="switch_33_recoder">음성녹음기 권한 및 설정</string>
+    <string name="switch_34_dmb">DMB</string>
+    <string name="switch_35_music">음악</string>
+    <string name="switch_36_email">이메일 설정</string>
+    <string name="switch_37_gmail">G메일 설정</string>
+    <string name="switch_38_filemanager">파일 매니저 설정</string>
+    <string name="switch_39_art">ART 설정</string>
+    <string name="switch_40_hidden">Hidden menu(LogService) 설정</string>
+    <string name="switch_41_operation">사업자(국가)별 시스템 언어 변경</string>
+    <string name="switch_42_qwerty">Qwerty 한글키보드 제거</string>
+
+    <!-- Actionbar menu 문자열 -->
+    <string name="menu_1_allcheck">모두 체크</string>
+    <string name="menu_2_alluncheck">모두 체크해제</string>
+    <string name="menu_3_about">도움말</string>
+
+    <!-- DummyFileList_Fragment -->
+    <string name="toast_delete_success">삭제가 완료되었습니다.</string>
+    <string name="toast_not_select">1개이상 파일을 선택하세요.</string>
+
+    <!-- Generate_dummy_Fragment -->
+    <string name="text_available_storage">사용 가능한 공간</string>
+    <string name="toast_dummy_notinput">입력값이 입력되지 않았습니다.</string>
+    <string name="notification_generate_success">더미파일 생성 완료</string>
+    <string name="snackbar_start_generate">더미생성을 시작합니다.\n더미생성 중 생성버튼은 비활성화 됩니다.</string>
+
+
+    <!-- DummyThreadHelper -->
+    <string name="notification_generating_dummy">더미파일 생성중...</string>
+    <string name="notification_generating_contact">더미주소록 생성중...</string>
+    <string name="chk_create_dummy">더미파일 생성</string>
+    <string name="chk_create_contact">더미주소록 생성</string>
+    <string name="edittext_manual_input_file">퍼센티지 수동입력</string>
+    <string name="edittext_manual_input_contact_ea">갯수 수동입력</string>
+    <string name="edittext_manual_input_contact_number">번호 수동입력</string>
+    <string name="btn_generate">생성</string>
+
+    <!-- DummyFileList -->
+    <string name="text_using_storage">사용 중 공간</string>
+    <string name="btn_delete">삭제</string>
+    <string name="text_not_exist_dummy">표시할 더미파일이 없습니다</string>
+
+    <!-- Information_Fragment -->
+    <string name="text_model">모델명</string>
+    <string name="text_imei">기기 고유 번호(IMEI)</string>
+    <string name="text_phone_number">SIM 번호</string>
+    <string name="text_operator">통신사</string>
+    <string name="text_app_ver">버전 : 0.1</string>
+    <string name="text_corp">유정시스템</string>
+
+    <!-- StorageState View -->
+    <string name="text_storage_type">내부 저장소</string>
+    <string name="text_storage_usage">Null</string>
+    <string name="text_storage_used_of_mid"> 중 </string>
+    <string name="text_storage_used_of_end"> 사용 </string>
+
+    <string name="action_settings">Settings</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+</resources>
