@@ -4,6 +4,8 @@ import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.preference.Preference;
+import android.preference.PreferenceFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,52 +18,34 @@ import prc.yjsys.com.reliabilitypreconditionforart.Utility.DeviceManager;
 /**
  * Created by jeongbin.son on 2017-01-19.
  */
-public class Information_Fragment extends Fragment{
+public class Information_Fragment extends PreferenceFragment{
 
-    TextView dModelName, dIMEI, dPhoneNumber, dOperater = null;
-    Context context = null;
+    Preference dModelName, dIMEI, dPhoneNumber, dOperater = null;
     DeviceManager DM = null;
 
     public static Fragment newInstance(){
         return new Information_Fragment();
     }
 
-
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.frgm_info, container, false);
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        addPreferencesFromResource(R.xml.dev_info);
+
 
         DM = new DeviceManager(getActivity());
-        dModelName = (TextView) rootView.findViewById(R.id.des_model);
-        dIMEI = (TextView) rootView.findViewById(R.id.des_imei);
-        dPhoneNumber = (TextView) rootView.findViewById(R.id.des_phonenumber);
-        dOperater = (TextView) rootView.findViewById(R.id.des_operator);
 
-        Init_DevInfo();
+        dModelName = findPreference("devinfo_title_model");
+        dModelName.setSummary(DM.getModelName());
 
-        return rootView;
+        dIMEI = findPreference("devinfo_title_imei");
+        dIMEI.setSummary(DM.getIMEI());
+
+
+        dPhoneNumber = findPreference("devinfo_title_phonenumber");
+        dPhoneNumber.setSummary(DM.getPhoneNumber());
     }
-
-    private void Init_DevInfo(){
-        dModelName.setText(getDeviceModel());
-        dIMEI.setText(getIMEI());
-        dPhoneNumber.setText(getPhoneNumber());
-        dOperater.setText(DM.getOperator());
-    }
-
-    private String getDeviceModel(){
-        return Build.MODEL;
-    }
-
-    private String getIMEI(){
-        return DM.getIMEI();
-    }
-
-    private String getPhoneNumber(){
-        return DM.getPhoneNumber();
-    }
-
-
 }
 
 

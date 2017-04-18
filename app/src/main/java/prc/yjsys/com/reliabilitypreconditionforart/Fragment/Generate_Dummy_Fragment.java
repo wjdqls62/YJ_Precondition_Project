@@ -4,11 +4,13 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Context;
 import android.os.Bundle;
+import android.speech.RecognitionListener;
 import android.support.design.widget.Snackbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,12 +30,15 @@ public class Generate_Dummy_Fragment extends Fragment
         implements View.OnClickListener {
 
     private final int SnackBar_Length_Long                      = 3000;
+    private final int Generate_Dummy_Fragment_Padding           = 15;
+
+
+
     private Global_IsRunning_Thread isRun                       = null;
     private DummyThreadHelper dcm                               = null;
     private DummyViewHelper sm                                  = null;
 
 
-    private RelativeLayout storageStateView                     = null;
     private LayoutInflater mInflater                            = null;
     private StorageStateManager SSM                             = null;
     private Button mGenerateDummy                               = null;
@@ -56,7 +61,6 @@ public class Generate_Dummy_Fragment extends Fragment
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final View rootView = inflater.inflate(R.layout.frgm_dummy, container, false);
-
 
         sm = new DummyViewHelper(context, rootView);
 

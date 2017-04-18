@@ -1,7 +1,7 @@
 apply plugin: 'com.android.application'
 android {
     compileSdkVersion 25
-    buildToolsVersion '25.0.2'
+    buildToolsVersion '25'
 
     defaultConfig {
         applicationId "prc.yjsys.com.reliabilitypreconditionforart"
@@ -28,7 +28,5 @@ android {
     }
 }
 dependencies {
-    compile files('libs/xmlbeans-2.6.0.jar')
-    compile files('libs/poi-ooxml-3.16.jar')
     compile files('libs/jxl.jar')
 }

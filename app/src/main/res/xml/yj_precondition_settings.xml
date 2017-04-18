@@ -1,17 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     android:key="settings">
+    <PreferenceCategory
+        android:title="Auto-Fill">
+        <SwitchPreference
+            android:id="@+id/autofill_dummy_rnadom_number"
+            android:title="주소록 무작위 번호 생성"
+            android:summary="주소록 번호 생성시 번호를 랜덤하게 생성합니다"
+            android:defaultValue="false"/>
+
+    </PreferenceCategory>
 
     <PreferenceCategory
-        android:title="Category1" >
+        android:title="저장 경로"
+        android:summary="앱내 사용중 생성되는 파일의 경로입니다" >
 
-    <Preference
-        android:id="@+id/dummypath"
-        android:title="더미파일 생성 경로"
-        android:key="dummypath"
-        android:summary="/sdcard/YJ_Precondition/Dummy_files/"
-        android:defaultValue="/sdcard/YJ_Precondition/Dummy_files/" />
+        <Preference
+            android:id="@+id/dummy_path"
+            android:title="더미파일 생성 경로"
+            android:key="dummy_path"
+            android:summary="@string/dummy_save_path"
+            android:defaultValue="@string/dummy_save_path" />
 
+        <Preference
+            android:id="@+id/permission_xls_path"
+            android:title="앱권한 엑셀파일 저장 경로"
+            android:key="permission_path"
+            android:summary="@string/permission_xls_path"
+            android:defaultValue="@string/permission_xls_path" />
+
+        <Preference
+            android:id="@+id/art_script_path"
+            android:title="ART Script Preference 저장 경로"
+            android:key="art_script_path"
+            android:summary="@string/pref_folder_path"
+            android:defaultValue="@string/pref_folder_path" />
     </PreferenceCategory>
 
 

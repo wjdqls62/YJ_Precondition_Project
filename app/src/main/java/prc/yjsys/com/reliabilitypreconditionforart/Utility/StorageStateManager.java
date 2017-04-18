@@ -34,7 +34,7 @@ public class StorageStateManager extends Fragment {
     private long totalStorageBytes     = 0;
     private int  temp = 0;
 
-    private String internalAutofillPath = getActivity().getResources().getString(R.string.dummy_save_path);
+    private String internalAutofillPath =null;
 
     TextView mStorageType = null;
     TextView mStorageState = null;
@@ -59,6 +59,7 @@ public class StorageStateManager extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.common_storage_state_view, container, false);
 
+        internalAutofillPath = getActivity().getResources().getString(R.string.dummy_save_path);
         mStorageType = (TextView) rootView.findViewById(R.id.storage_type);
         mStorageState = (TextView) rootView.findViewById(R.id.storage_usage);
         mUsageStorageProgress = (ProgressBar) rootView.findViewById(R.id.storage_usage_guage);

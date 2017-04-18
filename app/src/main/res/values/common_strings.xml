@@ -13,4 +13,6 @@
 
     <!-- 앱 Preference를 file copy할 저장경로 -->
     <string name="pref_folder_path">/sdcard/YJ_Precondition/Preference/</string>
+
+
 </resources>
