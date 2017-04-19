@@ -209,11 +209,11 @@ public class DummyThreadHelper {
             }catch(java.io.IOException e){
                     e.printStackTrace();
                 } finally{
+                    publishProgress(100, FLAG_DUMMY_FILE);
                     if (bos != null) try {
                         bos.close();
                     } catch (Exception e) {
-                    }
-                    ;
+                    };
                     if (fos != null) try {
                         fos.close();
                     } catch (Exception e) {
@@ -226,6 +226,7 @@ public class DummyThreadHelper {
                     gd.generate_contact(i);
                     publishProgress(Integer.valueOf((int)( (double)i/(double)cnt_contact * 100.0)), FLAG_DUMMY_CONTACT);
                 }
+                publishProgress(100, FLAG_DUMMY_CONTACT);
             }
             return null;
         }
