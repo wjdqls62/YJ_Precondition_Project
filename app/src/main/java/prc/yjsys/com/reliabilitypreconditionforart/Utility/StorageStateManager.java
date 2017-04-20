@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.StatFs;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,12 +16,15 @@ import java.io.File;
 
 import prc.yjsys.com.reliabilitypreconditionforart.R;
 
+import static android.content.ContentValues.TAG;
+
 /**
  * Created by jeongbin.son on 2017-02-23.
  */
 public class StorageStateManager extends Fragment {
 
-
+    private final String FLAG_AUTO      = "AUTO";
+    private final String FLAG_BYTE     = "BYTE";
     private final String FLAG_KB       = "KB";
     private final String FLAG_MB       = "MB";
     private final String FLAG_GB       = "GB";
@@ -71,11 +75,17 @@ public class StorageStateManager extends Fragment {
     }
 
     public void refrestStorageStateView(){
+        AutoChageStorageUnit usageObj = new AutoChageStorageUnit();
+        AutoChageStorageUnit totalObj = new AutoChageStorageUnit();
         refreshCurrentStorage();
 
-        mStorageState.setText(usingStorageBytes + FLAG_GB + " / " + totalStorageBytes + FLAG_GB);
-        mUsageStorageProgress.setMax(Integer.parseInt(Long.toString(totalStorageBytes)));
-        mUsageStorageProgress.setProgress(Integer.parseInt(Long.toString(usingStorageBytes)));
+        usageObj.chageDataUnit(usingStorageBytes);
+        totalObj.chageDataUnit(totalStorageBytes);
+        Log.d("TAG", usingStorageBytes+"");
+
+        mStorageState.setText( usageObj.dataQuantity+usageObj.dataUnit + " / " + totalObj.dataQuantity + totalObj.dataUnit);
+        mUsageStorageProgress.setMax(Integer.parseInt(Long.toString(getTotalStorage(FLAG_GB))));
+        mUsageStorageProgress.setProgress(Integer.parseInt(Long.toString(getUsingStorage(FLAG_GB,"TOTAL"))));
     }
 
 
@@ -84,19 +94,21 @@ public class StorageStateManager extends Fragment {
         path = Environment.getDataDirectory();
         stat = new StatFs(path.getPath());
 
-        availableStorageBytes = getAvailableStorage("GB");
-        usingStorageBytes = getUsingStorage("GB", "TOTAL");
-        totalStorageBytes = getTotalStorage("GB");
+        availableStorageBytes = getAvailableStorage(FLAG_BYTE);
+        usingStorageBytes = getUsingStorage(FLAG_BYTE, "TOTAL");
+        totalStorageBytes = getTotalStorage(FLAG_BYTE);
     }
 
     // Description : 현재사용가능한 메모리 용량 확인
     public long getAvailableStorage(String unitType){
-        if(unitType.equals(FLAG_KB)){
-            availableStorageBytes = Integer.parseInt(Long.toString(stat.getFreeBlocksLong() * stat.getBlockSizeLong() / 1024));
+        if(unitType.equals(FLAG_BYTE)){
+            availableStorageBytes = stat.getFreeBlocksLong() * stat.getBlockSizeLong();
+        }else if(unitType.equals(FLAG_KB)){
+            availableStorageBytes = stat.getFreeBlocksLong() * stat.getBlockSizeLong() / 1024;
         }else if(unitType.equals(FLAG_MB)){
-            availableStorageBytes = Integer.parseInt(Long.toString(stat.getFreeBlocksLong() * stat.getBlockSizeLong() / 1024 / 1024));
+            availableStorageBytes = stat.getFreeBlocksLong() * stat.getBlockSizeLong() / 1024 / 1024;
         }else if(unitType.equals(FLAG_GB)){
-            availableStorageBytes = Integer.parseInt(Long.toString(stat.getFreeBlocksLong() * stat.getBlockSizeLong() / 1024 / 1024 / 1024));
+            availableStorageBytes = stat.getFreeBlocksLong() * stat.getBlockSizeLong() / 1024 / 1024 / 1024;
         }
         return availableStorageBytes;
     }
@@ -107,7 +119,9 @@ public class StorageStateManager extends Fragment {
         // AutoFill 경로의 사용중 사용중 메모리 Return
         if(Path.equals("internalAutofillPath")) {
             tempPath = new File(internalAutofillPath);
-            if (unitType.equals(FLAG_KB)) {
+            if(unitType.equals(FLAG_BYTE)){
+                return usingStorageBytes;
+            }else if (unitType.equals(FLAG_KB)) {
                 usingStorageBytes = getFolderSize(new File(internalAutofillPath)) / 1024;
             } else if (unitType.equals(FLAG_MB)) {
                 usingStorageBytes = getFolderSize(new File(internalAutofillPath)) / 1024 / 1024;
@@ -115,15 +129,17 @@ public class StorageStateManager extends Fragment {
                 usingStorageBytes = getFolderSize(new File(internalAutofillPath)) / 1024 / 1024 / 1024;
             }
         }
-
         // 전체 사용중 메모리 Return
         else{
-            if(unitType.equals(FLAG_KB)){
-                usingStorageBytes = getTotalStorage("KB") - getAvailableStorage("KB");
+            if(unitType.equals(FLAG_BYTE)){
+                usingStorageBytes = getTotalStorage(FLAG_BYTE) - getAvailableStorage(FLAG_BYTE);
+            }else if(unitType.equals(FLAG_KB)){
+                usingStorageBytes = getTotalStorage(FLAG_KB) - getAvailableStorage(FLAG_KB);
             }else if(unitType.equals(FLAG_MB)){
-                usingStorageBytes = getTotalStorage("MB") - getAvailableStorage("MB");
+                usingStorageBytes = getTotalStorage(FLAG_MB) - getAvailableStorage(FLAG_MB);
             }else if(unitType.equals(FLAG_GB)){
-                usingStorageBytes = getTotalStorage("GB") - getAvailableStorage("GB");
+                usingStorageBytes = getTotalStorage(FLAG_GB) - getAvailableStorage(FLAG_GB
+                );
             }
         }
 
@@ -133,6 +149,10 @@ public class StorageStateManager extends Fragment {
 
     public long getTotalStorage(String unitType){
         totalStorageBytes = stat.getBlockSizeLong() * stat.getBlockCountLong();
+
+        if(unitType.equals(FLAG_BYTE)){
+            return totalStorageBytes;
+        }
 
         if(unitType.equals(FLAG_KB)){
             totalStorageBytes = totalStorageBytes / 1024;
@@ -164,4 +184,30 @@ public class StorageStateManager extends Fragment {
         }
         return dFolderSize;
     }
+
+    private class AutoChageStorageUnit{
+        public String dataUnit;
+        public String dataQuantity;
+
+        public void chageDataUnit(long orignalDataQuantity){
+            // 기준 : 최초 Byte로 받기떄문에 Byte단위부터 시작
+            // GB표시하였으나 0으로 표기될 경우
+            if(orignalDataQuantity / 1024 / 1024 / 1024 < 1){
+                this.dataQuantity = Long.toString(orignalDataQuantity / 1024 / 1024);
+                this.dataUnit = "MB";
+            }else{
+                this.dataQuantity = Long.toString(orignalDataQuantity / 1024 / 1024 / 1024);
+                this.dataUnit = "GB";
+            }
+            //if(orignalDataQuantity / 1024 / 1024 <1){
+            //    this.dataQuantity = Long.toString(orignalDataQuantity / 1024);
+            //    this.dataUnit = "KB";
+            //}else{
+            //    this.dataQuantity = Long.toString(orignalDataQuantity / 1024 / 1024);
+            //    this.dataUnit = "MB";
+            //}
+        }
+    }
+
+
 }
