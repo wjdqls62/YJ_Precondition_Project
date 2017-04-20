@@ -64,8 +64,6 @@ public class DummyThreadHelper {
         this.cnt_file = file;
         this.contact_number = contact_number;
 
-        Snackbar.make(view, "Generate Contact : "+contact+"\n"+"Generate File : "+Long.toString(file), 4000).show();
-        //Toast.makeText(context, "Generate Contact : "+contact+"\n"+"Generate File : "+Long.toString(file), Toast.LENGTH_SHORT).show();
         if(mAsyncTask != null){
             mAsyncTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
         }else{
@@ -180,14 +178,20 @@ public class DummyThreadHelper {
             isRun.setDummyThread_IsRun(true);
             mGenerateDummy.setEnabled(false);
             mNotificationManager.notify(mNotifyID, mNotifyBuilder.build());
-            calendar = Calendar.getInstance();
-            d_file_name =
-                    String.valueOf(calendar.get(Calendar.YEAR)) +
-                    String.valueOf(calendar.get(Calendar.MONTH)+1)+
-                    String.valueOf(calendar.get(Calendar.DATE))+
-                    String.valueOf(calendar.get(Calendar.HOUR))+
-                    String.valueOf(calendar.get(Calendar.MINUTE))+
-                    String.valueOf(calendar.get(Calendar.SECOND))+ ".dat";
+
+            if(!(cnt_file == 0)){
+                calendar = Calendar.getInstance();
+                d_file_name =
+                        String.valueOf(calendar.get(Calendar.YEAR)) +
+                                String.format("%02d", (calendar.get(Calendar.MONTH)+1))+
+                                String.format("%02d", (calendar.get(Calendar.DATE)+1))+
+                                String.format("%02d", (calendar.get(Calendar.HOUR)+1))+
+                                String.format("%02d", (calendar.get(Calendar.MINUTE)+1))+
+                                String.format("%02d", (calendar.get(Calendar.SECOND)+1))+ ".dat";
+
+            }
+
+
         }
 
         @Override

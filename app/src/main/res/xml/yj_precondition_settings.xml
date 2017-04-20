@@ -6,7 +6,7 @@
         <SwitchPreference
             android:key="autofill_dummy_rnadom_number"
             android:title="주소록 무작위 번호 생성"
-            android:summary="주소록 번호 생성시 번호를 랜덤하게 생성합니다"
+            android:summary="생성번호 마지막4자리를 랜덤하게 생성합니다"
             android:defaultValue="false"/>
 
     </PreferenceCategory>
