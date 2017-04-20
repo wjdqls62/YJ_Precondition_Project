@@ -3,6 +3,7 @@ package prc.yjsys.com.reliabilitypreconditionforart.Fragment;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.speech.RecognitionListener;
 import android.support.design.widget.Snackbar;
@@ -32,12 +33,9 @@ public class Generate_Dummy_Fragment extends Fragment
     private final int SnackBar_Length_Long                      = 3000;
     private final int Generate_Dummy_Fragment_Padding           = 15;
 
-
-
     private Global_IsRunning_Thread isRun                       = null;
     private DummyThreadHelper dcm                               = null;
     private DummyViewHelper sm                                  = null;
-
 
     private LayoutInflater mInflater                            = null;
     private StorageStateManager SSM                             = null;

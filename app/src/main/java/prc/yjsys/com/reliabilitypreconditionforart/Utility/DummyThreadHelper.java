@@ -35,6 +35,7 @@ public class DummyThreadHelper {
     private Context context                             = null;
     private GenerateDummy gd = null;
 
+    private boolean isRandomNumber                      = false;
     private int mNotifyID                               = 23;
     private int cnt_contact                             = 0;
     private long cnt_file                               = 0L;
@@ -73,10 +74,10 @@ public class DummyThreadHelper {
     }
 
     private class GenerateDummy{
-        Calendar calendar = null;
-        ContentResolver cr = null;
-        ContentValues cv = null;
-
+        private Calendar calendar = null;
+        private ContentResolver cr = null;
+        private ContentValues cv = null;
+        private SharedPreferences pref = null;
 
         private String cDisplayName = "Reliability_";
         private String cPhoneNum_first = "010";
@@ -89,6 +90,8 @@ public class DummyThreadHelper {
             cr = context.getContentResolver();
             cv = new ContentValues();
             calendar = Calendar.getInstance();
+            pref = context.getSharedPreferences("settings", Context.MODE_PRIVATE);
+            isRandomNumber = pref.getBoolean("autofill_dummy_rnadom_number",false);
         }
 
         private void generate_contact(int num){
@@ -102,16 +105,27 @@ public class DummyThreadHelper {
             .withValue(ContactsContract.Data.MIMETYPE, ContactsContract.CommonDataKinds.StructuredName.CONTENT_ITEM_TYPE)
             .withValue(ContactsContract.CommonDataKinds.StructuredName.DISPLAY_NAME, cDisplayName + String.format("%04d",num)).build());
 
+            // 번호생성시 Option
+            // 무작위 번호생성 Enable, 사용자 입력번호가 없을경우
+            if(isRandomNumber && contact_number == null){
+                num = (int)(Math.random() * 9999)+1;
+            // 무작위 번호생성여부와 상관없이 사용자 입력번호가 있을경우
+            }else if(!(contact_number==null)){
+                num = Integer.parseInt(contact_number);
+            // 아무런 옵션이 없을경우 1000부터 순차생성
+            }else{
+                num = Integer.parseInt(cPhoneNum_end) + num;
+            }
+
             if(contact_number == null) {
                 ops.add(ContentProviderOperation.
                         newInsert(ContactsContract.Data.CONTENT_URI)
                         .withValueBackReference(ContactsContract.Data.RAW_CONTACT_ID, 0)
-                        .withValue(ContactsContract.Data.MIMETYPE,
-                                ContactsContract.CommonDataKinds.Phone.CONTENT_ITEM_TYPE)
-                        .withValue(ContactsContract.CommonDataKinds.Phone.NUMBER, cPhoneNum_first + cPhoneNum_middle + (Integer.parseInt(cPhoneNum_end)+num))
-                        .withValue(ContactsContract.CommonDataKinds.Phone.TYPE,
-                                ContactsContract.CommonDataKinds.Phone.TYPE_MOBILE)
+                        .withValue(ContactsContract.Data.MIMETYPE, ContactsContract.CommonDataKinds.Phone.CONTENT_ITEM_TYPE)
+                        .withValue(ContactsContract.CommonDataKinds.Phone.NUMBER, cPhoneNum_first + cPhoneNum_middle + (String.format("%04d",num)))
+                        .withValue(ContactsContract.CommonDataKinds.Phone.TYPE, ContactsContract.CommonDataKinds.Phone.TYPE_MOBILE)
                         .build());
+
             }else{
                 ops.add(ContentProviderOperation.
                         newInsert(ContactsContract.Data.CONTENT_URI)
