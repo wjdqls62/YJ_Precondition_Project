@@ -88,7 +88,6 @@ public class Generate_Dummy_Fragment extends Fragment
     public void onStart() {
         super.onStart();
         check_limit_generate();
-
     }
 
     @Override

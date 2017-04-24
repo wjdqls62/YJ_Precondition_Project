@@ -35,7 +35,7 @@ import prc.yjsys.com.reliabilitypreconditionforart.Utility.PreferenceXMLCopyMana
 /**
  * Created by jeongbin.son on 2017-01-16.
  */
-public class Main_Activity extends AppCompatActivity
+public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener{
 
     private final String[] mDummyDirPath = new String[]{"/sdcard","/YJ_Precondition"};

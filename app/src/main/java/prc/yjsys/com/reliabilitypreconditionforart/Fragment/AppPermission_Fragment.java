@@ -53,7 +53,7 @@ public class AppPermission_Fragment extends Fragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         if(!getSystemLanguage().equals("en")){
-            Snackbar.make(getView(),"시스템 언어가 영어일 경우만 모두 표시됩니다", 3000)
+            Snackbar.make(getView(),getActivity().getResources().getText(R.string.text_permission_language), 3000)
                     .setAction("Settings", new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {

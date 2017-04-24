@@ -11,7 +11,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="경로에 파일이 존재하는지 확인요망"
+        android:text="@string/text_permission_empty"
         android:id="@+id/permission_empty"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"

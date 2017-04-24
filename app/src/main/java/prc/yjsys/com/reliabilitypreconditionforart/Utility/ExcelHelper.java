@@ -21,8 +21,8 @@ import prc.yjsys.com.reliabilitypreconditionforart.R;
  */
 public class ExcelHelper {
 
-    private String xlsPath = "/sdcard/YJ_Precondition/Permission/Permission_Application.xls";
-    private String dirPath = "/sdcard/YJ_Precondition/Permission/";
+    private String xlsPath = null;
+    private String dirPath = null;
 
     private Context context= null;
     private FileInputStream fis = null;
