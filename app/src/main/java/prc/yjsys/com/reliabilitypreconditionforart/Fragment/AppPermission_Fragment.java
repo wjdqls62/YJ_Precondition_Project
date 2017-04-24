@@ -120,7 +120,7 @@ public class AppPermission_Fragment extends Fragment {
     }
 
     public class ListViewAdapter extends BaseAdapter{
-
+        private ViewHolder holder;
         private ArrayList<ListViewItem> listViewItemList = new ArrayList<ListViewItem>();
 
         @Override
@@ -141,19 +141,24 @@ public class AppPermission_Fragment extends Fragment {
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             final Context context = parent.getContext();
+            holder = new ViewHolder();
 
             if(convertView == null){
                 LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 convertView = inflater.inflate(R.layout.listview_item, parent, false);
-            }
+                holder.iconDrawble = (ImageView) convertView.findViewById(R.id.list_item_thumbnail);
+                holder.titleStr = (TextView) convertView.findViewById(R.id.list_title);
 
-            ImageView iconImageView = (ImageView) convertView.findViewById(R.id.list_item_thumbnail);
-            TextView titleTextView = (TextView) convertView.findViewById(R.id.list_title);
+                convertView.setTag(holder);
+            }
+            holder = (ViewHolder) convertView.getTag();
+            //ImageView iconImageView = (ImageView) convertView.findViewById(R.id.list_item_thumbnail);
+            //TextView titleTextView = (TextView) convertView.findViewById(R.id.list_title);
 
             ListViewItem listViewItem = listViewItemList.get(position);
+            holder.iconDrawble.setImageDrawable(listViewItem.getIcon());
+            holder.titleStr.setText(listViewItem.getTitle());
 
-            iconImageView.setImageDrawable(listViewItem.getIcon());
-            titleTextView.setText(listViewItem.getTitle());
 
             return convertView;
         }
@@ -206,5 +211,13 @@ public class AppPermission_Fragment extends Fragment {
         public String getPackageName(){
             return packageStr;
         }
+    }
+
+    static class ViewHolder{
+        private ImageView iconDrawble;
+        private TextView titleStr;
+        private ListViewItem listViewItem;
+
+
     }
 }
