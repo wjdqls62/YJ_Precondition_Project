@@ -185,13 +185,10 @@ public class DummyThreadHelper {
                         String.valueOf(calendar.get(Calendar.YEAR)) +
                                 String.format("%02d", (calendar.get(Calendar.MONTH)+1))+
                                 String.format("%02d", (calendar.get(Calendar.DATE)+1))+
-                                String.format("%02d", (calendar.get(Calendar.HOUR)+1))+
+                                String.format("%02d", (calendar.get(Calendar.HOUR)+13))+
                                 String.format("%02d", (calendar.get(Calendar.MINUTE)+1))+
                                 String.format("%02d", (calendar.get(Calendar.SECOND)+1))+ ".dat";
-
             }
-
-
         }
 
         @Override
@@ -211,7 +208,7 @@ public class DummyThreadHelper {
                     }
 
                     fos = new FileOutputStream(data);
-                    bos = new BufferedOutputStream(fos, 1024);
+                    bos = new BufferedOutputStream(fos, 4096);
 
                     for (i = 0; i < cnt_file; i += 1024) {
                         bos.write(m_byteFiledata);
