@@ -38,8 +38,6 @@ public class Settings_Preference_Fragment extends PreferenceFragment {
         addPreferencesFromResource(R.xml.yj_precondition_settings);
         mAutofill_Random_Number = (SwitchPreference) findPreference("autofill_dummy_rnadom_number");
 
-
-
         pref = getActivity().getSharedPreferences("settings",Context.MODE_PRIVATE);
         editor = pref.edit();
 

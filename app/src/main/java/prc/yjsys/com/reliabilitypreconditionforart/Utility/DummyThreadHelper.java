@@ -155,7 +155,7 @@ public class DummyThreadHelper {
         private Button mGenerateDummy            = null;
         private FileOutputStream fos             = null;
         private BufferedOutputStream bos         = null;
-        private byte[] m_byteFiledata            = new byte[1024];
+        private byte[] m_byteFiledata          = new byte[1024];
         private long i                           = 0L;
         private String d_folder_path             = context.getResources().getString(R.string.dummy_save_path);
         private String d_file_name               = null;
@@ -210,10 +210,12 @@ public class DummyThreadHelper {
                     fos = new FileOutputStream(data);
                     bos = new BufferedOutputStream(fos, 4096);
 
-                    for (i = 0; i < cnt_file; i += 1024) {
+                    for (i = 0; i <= cnt_file; i += 1024) {
                         bos.write(m_byteFiledata);
-                        progress = Integer.valueOf((int) ((double) i / (double) cnt_file * 100.0));
 
+                        //progress = Integer.valueOf((int) ((double) i / (double) cnt_file * 100.0));
+
+                        progress = (int) (((double)i/(double)cnt_file) * 100);
                         if(temp != progress){
                             temp = progress;
                             publishProgress(progress, FLAG_DUMMY_FILE);
@@ -223,8 +225,10 @@ public class DummyThreadHelper {
                 }
             }catch(java.io.IOException e){
                     e.printStackTrace();
-                } finally{
-                    publishProgress(100, FLAG_DUMMY_FILE);
+                }
+                finally{
+                    Log.d(TAG, "Finally");
+
                     if (bos != null) try {
                         bos.close();
                     } catch (Exception e) {
@@ -233,6 +237,7 @@ public class DummyThreadHelper {
                         fos.close();
                     } catch (Exception e) {
                     }
+                    publishProgress(100, FLAG_DUMMY_FILE);
                 }
 
             // 더미주소록 생성부
@@ -251,24 +256,19 @@ public class DummyThreadHelper {
         @Override
         protected void onProgressUpdate(Integer... values) {
             if(values[1].equals(FLAG_DUMMY_FILE)){
+                mNotifyBuilder.setProgress(100, values[0], false);
                 mNotificationManager.notify(mNotifyID, mNotifyBuilder
                         .setContentTitle(context.getResources().getString(R.string.notification_generating_dummy))
                         .setContentText(values[0] + "%").build());
 
-                mNotifyBuilder.setProgress(100, values[0], false);
-                super.onProgressUpdate(values[0]);
             }
-
             else if(values[1].equals(FLAG_DUMMY_CONTACT)){
+                mNotifyBuilder.setProgress(100, values[0], false);
                 mNotificationManager.notify(mNotifyID, mNotifyBuilder
                         .setContentTitle(context.getResources().getString(R.string.notification_generating_contact))
                         .setContentText(values[0] + "%").build());
-
-                mNotifyBuilder.setProgress(100, values[0], false);
-                super.onProgressUpdate(values[0]);
             }
-
-
+            super.onProgressUpdate(values[0]);
         }
 
         @Override
@@ -277,13 +277,12 @@ public class DummyThreadHelper {
             mNotifyBuilder
                     .setContentTitle("")
                     .setContentText(context.getResources().getString(R.string.notification_generate_success))
-                    .setProgress(0, 0, false);
+                    .setProgress(100, 100, false);
             mNotificationManager.notify(mNotifyID, mNotifyBuilder.build());
 
             isRun.setDummyThread_IsRun(false);
             mGenerateDummy.setEnabled(true);
             Log.d(TAG + "_onPostExecute", "Dummy file complete.");
-
         }
 
         @Override

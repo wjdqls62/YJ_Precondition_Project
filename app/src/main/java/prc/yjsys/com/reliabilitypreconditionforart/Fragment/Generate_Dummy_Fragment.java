@@ -10,6 +10,7 @@ import android.support.design.widget.Snackbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
@@ -21,6 +22,8 @@ import prc.yjsys.com.reliabilitypreconditionforart.Utility.DummyThreadHelper;
 import prc.yjsys.com.reliabilitypreconditionforart.Utility.DummyViewHelper;
 import prc.yjsys.com.reliabilitypreconditionforart.Utility.Global_IsRunning_Thread;
 import prc.yjsys.com.reliabilitypreconditionforart.Utility.StorageStateManager;
+
+import static android.content.Context.INPUT_METHOD_SERVICE;
 
 
 /**
@@ -94,6 +97,8 @@ public class Generate_Dummy_Fragment extends Fragment
     public void onDestroyView() {
         super.onDestroyView();
         sm.reset_Progress_Config();
+        sm.onHideKeypad();
+
     }
 
     @Override

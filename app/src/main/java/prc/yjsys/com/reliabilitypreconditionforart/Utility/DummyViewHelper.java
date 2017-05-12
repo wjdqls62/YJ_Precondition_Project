@@ -9,6 +9,7 @@ import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
@@ -276,6 +277,11 @@ public class DummyViewHelper implements SeekBar.OnSeekBarChangeListener, CheckBo
             ready_dummy_file = 0;
             return false;
         }
+    }
+
+    public void onHideKeypad(){
+        InputMethodManager inputManager = (InputMethodManager)context.getSystemService(Context.INPUT_METHOD_SERVICE);
+        inputManager.hideSoftInputFromWindow(rootView.getWindowToken(), 0);
     }
 
     public boolean canWrite(){
