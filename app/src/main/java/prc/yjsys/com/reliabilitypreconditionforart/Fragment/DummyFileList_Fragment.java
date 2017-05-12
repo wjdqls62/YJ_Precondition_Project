@@ -131,7 +131,6 @@ public class DummyFileList_Fragment extends Fragment implements View.OnClickList
                 mDeleteFileName.get(i).delete();
             }
 
-
             Snackbar.make(getView(),getResources().getString(R.string.toast_delete_success), SnackBar_Length_Long).show();
             //Toast.makeText(getActivity(),getResources().getString(R.string.toast_delete_success), Toast.LENGTH_SHORT).show();
         }else{
@@ -140,6 +139,7 @@ public class DummyFileList_Fragment extends Fragment implements View.OnClickList
         }
 
         init_ListViewItem();
+        StorageStateManager.refrestStorageStateView();
     }
 
     public class ListViewAdapter extends BaseAdapter {

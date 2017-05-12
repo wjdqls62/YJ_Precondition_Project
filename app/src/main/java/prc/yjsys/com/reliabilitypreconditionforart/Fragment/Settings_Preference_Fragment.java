@@ -24,6 +24,7 @@ public class Settings_Preference_Fragment extends PreferenceFragment {
 
     private SharedPreferences pref = null;
     private SwitchPreference mAutofill_Random_Number = null;
+    private SwitchPreference autofill_dummy_delete_contact = null;
     private SharedPreferences.Editor editor = null;
 
     public static Fragment newInstance(){
@@ -37,6 +38,7 @@ public class Settings_Preference_Fragment extends PreferenceFragment {
 
         addPreferencesFromResource(R.xml.yj_precondition_settings);
         mAutofill_Random_Number = (SwitchPreference) findPreference("autofill_dummy_rnadom_number");
+        autofill_dummy_delete_contact = (SwitchPreference) findPreference("autofill_dummy_delete_contact");
 
         pref = getActivity().getSharedPreferences("settings",Context.MODE_PRIVATE);
         editor = pref.edit();
@@ -50,6 +52,20 @@ public class Settings_Preference_Fragment extends PreferenceFragment {
                 }else{
                     editor.putBoolean(((SwitchPreference)preference).getKey(), true).commit();
                     mAutofill_Random_Number.setChecked(true);
+                }
+                return false;
+            }
+        });
+
+        autofill_dummy_delete_contact.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+            @Override
+            public boolean onPreferenceChange(Preference preference, Object newValue) {
+                if(((SwitchPreference)preference).isChecked()){
+                    editor.putBoolean(((SwitchPreference)preference).getKey(), false).commit();
+                    autofill_dummy_delete_contact.setChecked(false);
+                }else{
+                    editor.putBoolean(((SwitchPreference)preference).getKey(), true).commit();
+                    autofill_dummy_delete_contact.setChecked(true);
                 }
                 return false;
             }

@@ -6,6 +6,7 @@ import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.os.AsyncTask;
 import android.provider.ContactsContract;
 import android.support.design.widget.Snackbar;
@@ -23,6 +24,8 @@ import java.util.Calendar;
 import prc.yjsys.com.reliabilitypreconditionforart.Fragment.Settings_Preference_Fragment;
 import prc.yjsys.com.reliabilitypreconditionforart.R;
 
+import static android.R.attr.id;
+
 
 /**
  * Created by jeongbin.son on 2017-01-19.
@@ -36,6 +39,7 @@ public class DummyThreadHelper {
     private GenerateDummy gd = null;
 
     private boolean isRandomNumber                      = false;
+    private boolean isDeleteContact                     = false;
     private int mNotifyID                               = 23;
     private int cnt_contact                             = 0;
     private long cnt_file                               = 0L;
@@ -90,6 +94,7 @@ public class DummyThreadHelper {
             calendar = Calendar.getInstance();
             pref = context.getSharedPreferences("settings", Context.MODE_PRIVATE);
             isRandomNumber = pref.getBoolean("autofill_dummy_rnadom_number",false);
+            isDeleteContact = pref.getBoolean("autofill_dummy_delete_contact", false);
         }
 
         private void generate_contact(int num){
@@ -146,8 +151,6 @@ public class DummyThreadHelper {
         }
     }
 
-
-
     private class GenerateAsyncTask extends AsyncTask<Void, Integer, Integer>{
         private final Integer FLAG_DUMMY_CONTACT = 0;
         private final Integer FLAG_DUMMY_FILE    = 1;
@@ -172,6 +175,35 @@ public class DummyThreadHelper {
             isRun = Global_IsRunning_Thread.getInstance();
         }
 
+        private void deleteContacts()
+        {
+            String[] projection = new String[] { ContactsContract.Contacts._ID, ContactsContract.Contacts.DISPLAY_NAME };
+            Cursor localCursor = context.getContentResolver().query(ContactsContract.Contacts.CONTENT_URI, projection, null, null, null);
+            int count = localCursor.getCount();
+            if(count > 0)
+            {
+                localCursor.moveToFirst();
+                String id = "";
+                String del_name = "";
+                Log.v(TAG, String.valueOf(localCursor.getCount()));
+                for(int i = 0; i < count; i++)
+                {
+                    String str = "contact_id=" + localCursor.getInt(0);
+                    id = localCursor.getString(localCursor.getColumnIndex(ContactsContract.Contacts._ID));
+                    del_name = localCursor.getString(localCursor.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));
+                    if(del_name.equals("AMBS")){
+                        Log.d(TAG,"not delete : id = "+id+", del_name :"+del_name + "low"+str);
+                    }
+                    else  {
+                        Log.d(TAG,"delete : id = "+id+", del_name :"+del_name+ "low"+str);
+                        context.getContentResolver().delete(ContactsContract.RawContacts.CONTENT_URI, ContactsContract.RawContacts.CONTACT_ID+" ="+id , null);
+                    }
+                    localCursor.moveToNext();
+                }
+            }
+            localCursor.close();
+        }
+
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
@@ -185,7 +217,7 @@ public class DummyThreadHelper {
                         String.valueOf(calendar.get(Calendar.YEAR)) +
                                 String.format("%02d", (calendar.get(Calendar.MONTH)+1))+
                                 String.format("%02d", (calendar.get(Calendar.DATE)+1))+
-                                String.format("%02d", (calendar.get(Calendar.HOUR)+13))+
+                                String.format("%02d", (calendar.get(Calendar.HOUR)+12))+
                                 String.format("%02d", (calendar.get(Calendar.MINUTE)+1))+
                                 String.format("%02d", (calendar.get(Calendar.SECOND)+1))+ ".dat";
             }
@@ -242,6 +274,9 @@ public class DummyThreadHelper {
 
             // 더미주소록 생성부
             if(cnt_contact != 0){
+                if(isDeleteContact){
+                    deleteContacts();
+                }
                 for (int i=0; i<cnt_contact; i++){
                     gd.generate_contact(i);
                     publishProgress(Integer.valueOf((int)( (double)i/(double)cnt_contact * 100.0)), FLAG_DUMMY_CONTACT);

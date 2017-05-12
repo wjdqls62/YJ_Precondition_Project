@@ -6,8 +6,13 @@
         <SwitchPreference
             android:key="autofill_dummy_rnadom_number"
             android:title="주소록 무작위 번호 생성"
-            android:summary="생성번호 마지막4자리를 랜덤하게 생성합니다"
+            android:summary="번호를 랜덤하게 생성합니다"
             android:defaultValue="false"/>
+        <SwitchPreference
+            android:key="autofill_dummy_delete_contact"
+            android:title="주소록 초기화"
+            android:summary="기존 주소록을 모두삭제 후 생성합니다"
+            android:defaultValue="true"/>
 
     </PreferenceCategory>
 
