@@ -30,7 +30,7 @@
     <SwitchPreference
         android:id="@+id/sw6"
         android:title="@string/switch_6_autofill"
-        android:defaultValue="true"
+        android:defaultValue="false"
         android:key="autofill" />
     <SwitchPreference
         android:id="@+id/sw7"
@@ -70,7 +70,7 @@
     <SwitchPreference
         android:id="@+id/sw14"
         android:title="@string/switch_14_penmode"
-        android:defaultValue="true"
+        android:defaultValue="false"
         android:key="penmode" />
     <SwitchPreference
         android:id="@+id/sw15"
